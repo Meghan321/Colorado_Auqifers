@@ -1,0 +1,76 @@
+<html>
+
+<head>
+<meta charset="utf-8" />
+<title>Colorado Aquifers</title>
+
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
+
+<style>
+    body { margin: 0; padding: 0; }
+    #map { position: absolute; top: 320; bottom: 0; width: 100%}
+    #acre-wrapper-1 {display: flex; width: 100%; background-color: #e6e6b7}
+    #acre-wrapper-2 {display: flex; width: 100%; background-color: #e79a3c}
+    #acre-wrapper-3 {display: flex; width: 100%; background-color: #91df7c}
+    #acre-wrapper-4 {display: flex; width: 100%; background-color: #2fa9ca}
+    #acre-wrapper-5 {display: flex; width: 100%; background-color: #a20edd}
+</style>
+
+</head>
+
+<body>
+    
+<div id="map"></div>
+<div class='map-overlay'> 
+    <div class='map-overlay-inner'>
+        <h2 class="header">Colorado Aquifers</h2>
+        <div id="acre-wrapper-1"><p>  0-27,238 acres </p></div>
+        <div id="acre-wrapper-2"><p>27,238-100000 acres </p></div>
+        <div id="acre-wrapper-3"><p>100000-500000 acres </p></div>
+        <div id="acre-wrapper-4"><p>500000-1000000 acres</p></div>
+        <div id="acre-wrapper-5"><p>1000000-1910926 acres</p></div>
+        
+    </div>
+</div>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWVnaGFuMzIxIiwiYSI6ImNtN3c0bm1mZDAxejIyaW9lMXNmNWhwMjgifQ.AtdNRYXkbiK19HqbEnBHYQ';  //Put your mapbox access token here
+
+        // Load a new map in the 'map' HTML div
+        var map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'mapbox://styles/meghan321/cm8xcuzld000b01r1coeo4xfu', // Put your mapbox style ID here
+            center: [-104.942114, 39.717785], // starting position [lng, lat]
+            zoom: 5 // starting zoom
+        });
+    
+    
+    
+        map.on('load', function() {
+
+            // Add a CIRCLE layer to the map 
+            map.addLayer({
+                'id':'Aquifers_Colorado',
+                //'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://meghan321.5hifj4xx' // Your Mapbox tileset Map ID
+                },
+                'source-layer':'Bedrock_Aquifer-35xh7p', // name of tilesets
+                'layout':{
+                    'visibility': 'visible'
+                },
+                'paint': {
+
+                    'fill-opacity':1,
+
+                }
+            });
+            
+
+        })
+</script>
+
+</body>
+</html>
